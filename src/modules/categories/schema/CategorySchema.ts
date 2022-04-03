@@ -1,8 +1,8 @@
-import { Category } from '../models/Category';
-import { Schema, Model, model, Document } from 'mongoose';
+import { Category } from '../model/Category';
+import { Schema, Model, model } from 'mongoose';
 
 const mongooseSchema = new Schema({
-  nome: { type: String, required: true },
+  name: { type: String, required: true },
   description: { type: String, required: false },
 });
 

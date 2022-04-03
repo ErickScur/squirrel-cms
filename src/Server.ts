@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import { controllers } from './controllers';
 
 import { Server as OvernightServer } from '@overnightjs/core';
 
@@ -13,6 +14,7 @@ class Server extends OvernightServer {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cors());
     this.app.use(express.json());
+    super.addControllers(controllers);
   }
 
   public start() {

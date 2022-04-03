@@ -4,6 +4,8 @@ import { Environment } from './environment';
 
 import { DatabaseConnection } from './database';
 
+import './shared/container';
+
 (async () => {
   console.log('API Starting...');
 
