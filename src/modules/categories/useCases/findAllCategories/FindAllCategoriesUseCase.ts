@@ -10,8 +10,12 @@ class FindAllCategoriesUseCase {
   ) {}
 
   async execute(): Promise<Category[]> {
-    const categories = await this.categoriesRepository.findAll();
-    return categories;
+    try {
+      const categories = await this.categoriesRepository.findAll();
+      return categories;
+    } catch (error) {
+      throw error;
+    }
   }
 }
 

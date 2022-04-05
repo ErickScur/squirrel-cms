@@ -9,7 +9,7 @@ class FindAllCategoriesController {
       const categories = await createCategoryUseCase.execute();
       return res.status(200).send(categories);
     } catch (error) {
-      return res.status(400).json({ message: error.message });
+      return res.status(error.statusCode).json({ message: error.message });
     }
   }
 }
