@@ -4,9 +4,9 @@ import { Request, Response } from 'express';
 
 class FindAllCategoriesController {
   async handle(req: Request, res: Response): Promise<Response> {
-    const createCategoryUseCase = container.resolve(FindAllCategoriesUseCase);
+    const findAllCategoriesUseCase = container.resolve(FindAllCategoriesUseCase);
     try {
-      const categories = await createCategoryUseCase.execute();
+      const categories = await findAllCategoriesUseCase.execute();
       return res.status(200).send(categories);
     } catch (error) {
       return res.status(error.statusCode).json({ message: error.message });

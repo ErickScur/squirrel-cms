@@ -4,11 +4,11 @@ import { FindCategoryByIdUseCase } from './FindCategoryByIdUseCase';
 
 class FindCategoryByIdController {
   async handle(req: Request, res: Response): Promise<Response> {
-    const createCategoryUseCase = container.resolve(FindCategoryByIdUseCase);
+    const findCategoryByIdUseCase = container.resolve(FindCategoryByIdUseCase);
     const { id } = req.params;
     try {
-      const categories = await createCategoryUseCase.execute(id);
-      return res.status(200).send(categories);
+      const category = await findCategoryByIdUseCase.execute(id);
+      return res.status(200).send(category);
     } catch (error) {
       return res.status(error.statusCode).json({ message: error.message });
     }
