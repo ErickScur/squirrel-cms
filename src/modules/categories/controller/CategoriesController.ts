@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Put } from '@overnightjs/core';
+import { Controller, Delete, Get, Post, Put } from '@overnightjs/core';
 import { CreateCategoryController } from '../useCases/createCategory/CreateCategoryController';
 import { Request, Response, NextFunction } from 'express';
 import { FindAllCategoriesController } from '../useCases/findAllCategories/FindAllCategoriesController';
 import { FindCategoryByIdController } from '../useCases/findById/FindCategoryByIdController';
 import { FindCategoryByNameController } from '../useCases/findByName/FindCategoryByNameController';
 import { UpdateCategoryController } from '../useCases/updateCategory/UpdateCategoryController';
+import { DeleteCategoryController } from '../useCases/deleteCategory/DeleteCategoryController';
 
 @Controller('categories')
 class CategoriesController {
@@ -13,6 +14,7 @@ class CategoriesController {
   private _findCategoryByIdController = new FindCategoryByIdController();
   private _findCategoryByNameController = new FindCategoryByNameController();
   private _updateCategoryController = new UpdateCategoryController();
+  private _deleteCategoryController = new DeleteCategoryController();
 
   @Get()
   private async getAll(req: Request, res: Response, next: NextFunction) {
@@ -50,6 +52,14 @@ class CategoriesController {
   private async update(req: Request, res: Response, next: NextFunction) {
     try {
       await this._updateCategoryController.handle(req, res);
+    } catch (error) {
+      next(error);
+    }
+  }
+  @Delete(':id')
+  private async delete(req: Request, res: Response, next: NextFunction) {
+    try {
+      await this._deleteCategoryController.handle(req, res);
     } catch (error) {
       next(error);
     }
