@@ -2,11 +2,13 @@ import { Controller, Get, Post } from '@overnightjs/core';
 import { CreateCategoryController } from '../useCases/createCategory/CreateCategoryController';
 import { Request, Response, NextFunction } from 'express';
 import { FindAllCategoriesController } from '../useCases/findAllCategories/FindAllCategoriesController';
+import { FindCategoryByIdController } from '../useCases/findById/FindCategoryByIdController';
 
 @Controller('categories')
 class CategoriesController {
   private _createCategoryController = new CreateCategoryController();
   private _findAllCategoriesController = new FindAllCategoriesController();
+  private _findCategoryByIdController = new FindCategoryByIdController();
 
   @Get()
   private async getAll(req: Request, res: Response, next: NextFunction) {
@@ -20,6 +22,14 @@ class CategoriesController {
   private async create(req: Request, res: Response, next: NextFunction) {
     try {
       await this._createCategoryController.handle(req, res, next);
+    } catch (error) {
+      next(error);
+    }
+  }
+  @Get(':id')
+  private async getById(req: Request, res: Response, next: NextFunction) {
+    try {
+      await this._findCategoryByIdController.handle(req, res);
     } catch (error) {
       next(error);
     }
