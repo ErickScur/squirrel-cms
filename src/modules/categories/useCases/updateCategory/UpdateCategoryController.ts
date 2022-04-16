@@ -13,7 +13,7 @@ class UpdateCategoryController {
       const category = await updateCategoryUseCase.execute({ name, description, id });
       return res.status(204).send();
     } catch (error) {
-      return res.status(error.statusCode).json({ message: error.message });
+      return res.status(error.statusCode || 400).json({ message: error.message });
     }
   }
 }

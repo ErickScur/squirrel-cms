@@ -12,7 +12,7 @@ class DeleteCategoryController {
       const category = await deleteCategoryUseCase.execute(id);
       return res.status(204).send();
     } catch (error) {
-      return res.status(error.statusCode).json({ message: error.message });
+      return res.status(error.statusCode || 400).json({ message: error.message });
     }
   }
 }

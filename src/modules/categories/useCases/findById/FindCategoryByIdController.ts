@@ -10,7 +10,7 @@ class FindCategoryByIdController {
       const category = await findCategoryByIdUseCase.execute(id);
       return res.status(200).send(category);
     } catch (error) {
-      return res.status(error.statusCode).json({ message: error.message });
+      return res.status(error.statusCode || 400).json({ message: error.message });
     }
   }
 }

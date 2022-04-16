@@ -13,7 +13,7 @@ class UpdateBrandController {
       await updateBrandUseCase.execute({ name, description, id });
       return res.status(200).send();
     } catch (error) {
-      return res.status(error.statusCode).json({ message: error.message });
+      return res.status(error.statusCode || 400).json({ message: error.message });
     }
   }
 }

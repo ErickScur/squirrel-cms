@@ -10,7 +10,7 @@ class FindBrandByNameController {
       const brands = await findBrandByNameUseCase.execute(name);
       return res.status(200).send(brands);
     } catch (error) {
-      return res.status(error.statusCode).json({ message: error.message });
+      return res.status(error.statusCode || 400).json({ message: error.message });
     }
   }
 }
