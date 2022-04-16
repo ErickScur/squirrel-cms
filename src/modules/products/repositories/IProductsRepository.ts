@@ -9,6 +9,7 @@ interface IUpdateProductDTO {
   stock: number;
   categoryId: string;
   brandId: string;
+  slug: string;
 }
 interface ICreateProductDTO {
   name: string;
@@ -18,6 +19,7 @@ interface ICreateProductDTO {
   stock: number;
   categoryId: string;
   brandId: string;
+  slug: string;
 }
 
 interface IProductsRepository {
@@ -32,6 +34,7 @@ interface IProductsRepository {
     stock,
     categoryId,
     brandId,
+    slug,
   }: ICreateProductDTO): Promise<Product>;
   update({
     name,

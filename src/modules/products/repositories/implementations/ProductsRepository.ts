@@ -60,6 +60,7 @@ class ProductsRepository implements IProductsRepository {
     categoryId,
     brandId,
     id,
+    slug,
   }: IUpdateProductDTO): Promise<Product> {
     try {
       return await ProductSchema.findByIdAndUpdate(id, {
@@ -70,6 +71,7 @@ class ProductsRepository implements IProductsRepository {
         stock,
         categoryId,
         brandId,
+        slug,
       });
     } catch (error) {
       throw error;
