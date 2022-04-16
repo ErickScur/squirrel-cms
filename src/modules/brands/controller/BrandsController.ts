@@ -1,11 +1,12 @@
 // --- OvernightJS
-import { Controller, Get, Post, Put } from '@overnightjs/core';
+import { Controller, Delete, Get, Post, Put } from '@overnightjs/core';
 
 // --- Express Types
 import { Request, Response, NextFunction } from 'express';
 
 // --- Controllers ---
 import { CreateBrandController } from '../useCases/createBrand/CreateBrandController';
+import { DeleteBrandController } from '../useCases/deleteBrand/DeleteBrandController';
 import { FindAllBrandsController } from '../useCases/findAll/FindAllBrandsController';
 import { FindBrandByIdController } from '../useCases/findById/FindBrandByIdController';
 import { FindBrandByNameController } from '../useCases/findByName/FindBrandByNameController';
@@ -18,6 +19,7 @@ class BrandsController {
   private _findBrandByIdController = new FindBrandByIdController();
   private _findBrandByNameController = new FindBrandByNameController();
   private _updateBrandController = new UpdateBrandController();
+  private _deleteBrandController = new DeleteBrandController();
 
   @Get()
   private async getAll(req: Request, res: Response, next: NextFunction) {
@@ -47,6 +49,14 @@ class BrandsController {
   private async update(req: Request, res: Response, next: NextFunction) {
     try {
       await this._updateBrandController.handle(req, res, next);
+    } catch (error) {
+      next(error);
+    }
+  }
+  @Delete(':id')
+  private async delete(req: Request, res: Response, next: NextFunction) {
+    try {
+      await this._deleteBrandController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
