@@ -18,7 +18,7 @@ class CreateProductController {
       });
       return res.status(201).send();
     } catch (error) {
-      return res.status(error.statusCode).json({ message: error.message });
+      return res.status(error.statusCode || 500).json({ message: error.message });
     }
   }
 }

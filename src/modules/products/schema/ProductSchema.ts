@@ -7,8 +7,8 @@ const mongooseSchema = new Schema({
   mainImage: { type: String, required: false },
   price: { type: Number, required: true },
   stock: { type: Number, required: true },
-  categoryId: { type: String, required: true },
-  brandId: { type: String, required: true },
+  categoryId: { type: Schema.Types.ObjectId, ref: 'categories', required: true },
+  brandId: { type: Schema.Types.ObjectId, ref: 'brands', required: true },
   slug: { type: String, required: true },
 });
 

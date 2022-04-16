@@ -36,6 +36,7 @@ class ProductsRepository implements IProductsRepository {
     stock,
     categoryId,
     brandId,
+    slug,
   }: ICreateProductDTO): Promise<Product> {
     try {
       return await ProductSchema.create({
@@ -46,6 +47,7 @@ class ProductsRepository implements IProductsRepository {
         stock,
         categoryId,
         brandId,
+        slug,
       });
     } catch (error) {
       throw error;

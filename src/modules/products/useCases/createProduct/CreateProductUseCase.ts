@@ -23,7 +23,7 @@ class CreateProductUseCase {
       if (productExists)
         throw new HTTPBadRequest('A Product with the same name already exists!');
 
-      const slug = slugify(name);
+      const slug = slugify(name.toLowerCase());
       await this.productsRepository.create({
         name,
         description,
