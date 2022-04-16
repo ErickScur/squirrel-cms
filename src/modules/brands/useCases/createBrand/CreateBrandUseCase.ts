@@ -12,7 +12,7 @@ class CreateBrandUseCase {
   async execute({ name, description }): Promise<void> {
     try {
       const cateogryAlreadyExists = await this.brandsRepository.findByName(name);
-      if (cateogryAlreadyExists) throw new HTTPBadRequest('Category already exists');
+      if (cateogryAlreadyExists) throw new HTTPBadRequest('Brand already exists');
 
       await this.brandsRepository.create({ name, description });
     } catch (error) {
