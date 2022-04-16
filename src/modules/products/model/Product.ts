@@ -8,6 +8,7 @@ interface Product extends Document {
   stock: number;
   categoryId: string;
   brandId: string;
+  slug: string;
 }
 
 export { Product };
