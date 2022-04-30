@@ -5,6 +5,8 @@ import { BrandsRepository } from '../../modules/brands/repositories/implementati
 import { IBrandsRepository } from '../../modules/brands/repositories/IBrandsRepository';
 import { IProductsRepository } from '../../modules/products/repositories/IProductsRepository';
 import { ProductsRepository } from '../../modules/products/repositories/implementations/ProductsRepository';
+import { IUsersRepository } from '../../modules/users/repositories/IUsersRepository';
+import { UsersRepository } from '../../modules/users/repositories/implementations/UsersRepository';
 
 container.registerSingleton<ICategoriesRepository>(
   'CategoriesRepository',
@@ -17,3 +19,5 @@ container.registerSingleton<IProductsRepository>(
   'ProductsRepository',
   ProductsRepository
 );
+
+container.registerSingleton<IUsersRepository>('UsersRepository', UsersRepository);
