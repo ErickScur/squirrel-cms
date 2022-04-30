@@ -4,6 +4,7 @@ import { Request, Response, NextFunction } from 'express';
 import { FindAllProductsController } from '../useCases/findAll/FindAllProductsController';
 import { FindByIdController } from '../useCases/findById/FindByIdController';
 import { UpdateProductController } from '../useCases/updateProduct/UpdateProductController';
+import { DeleteProductController } from '../useCases/deleteProduct/DeleteProductController';
 
 @Controller('products')
 class ProductsController {
@@ -11,6 +12,7 @@ class ProductsController {
   private _findAllProductsController = new FindAllProductsController();
   private _findByIdController = new FindByIdController();
   private _updateProductController = new UpdateProductController();
+  private _deleteProductController = new DeleteProductController();
 
   @Post()
   private async create(req: Request, res: Response, next: NextFunction) {
@@ -45,11 +47,10 @@ class ProductsController {
       next(error);
     }
   }
-  // TODO delete
   @Delete(':id')
   private async delete(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._findAllProductsController.handle(req, res);
+      await this._deleteProductController.handle(req, res);
     } catch (error) {
       next(error);
     }
