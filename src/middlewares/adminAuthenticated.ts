@@ -11,11 +11,9 @@ interface IPayload {
 export async function adminMiddleware(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization;
   const jwtSecret = Environment.getConfig('JWT_SECRET');
-
   try {
     if (!authHeader) throw new HTTPBadRequest('Token is missing');
     const [, token] = authHeader.split(' ');
-
     const { sub, admin } = verify(token, jwtSecret) as IPayload;
     const usersRepository = new UsersRepository();
 
@@ -23,7 +21,6 @@ export async function adminMiddleware(req: Request, res: Response, next: NextFun
     if (!user) throw new HTTPNotFound('User does not exist');
 
     if (!user.admin) throw new HTTPForbidden('User must be admin');
-
     req.body._user = user;
     next();
   } catch (e) {

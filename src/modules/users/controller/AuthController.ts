@@ -8,7 +8,7 @@ class AuthController {
   @Post('login')
   private async login(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._authenticateUserController.handle(req, res);
+      await this._authenticateUserController.handle(req, res, next);
     } catch (error) {
       next(error);
     }

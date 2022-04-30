@@ -24,7 +24,7 @@ class BrandsController {
   @Get()
   private async getAll(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._findAllBrandsController.handle(req, res);
+      await this._findAllBrandsController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
@@ -40,7 +40,7 @@ class BrandsController {
   @Get(':id')
   private async getById(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._findBrandByIdController.handle(req, res);
+      await this._findBrandByIdController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
@@ -64,7 +64,7 @@ class BrandsController {
   @Get('name/:name')
   private async getByName(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._findBrandByNameController.handle(req, res);
+      await this._findBrandByNameController.handle(req, res, next);
     } catch (error) {
       next(error);
     }

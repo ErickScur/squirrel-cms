@@ -3,6 +3,7 @@ import cors from 'cors';
 import { controllers } from './controllers';
 
 import { Server as OvernightServer } from '@overnightjs/core';
+import { errorHandler } from './middlewares/errorHandler';
 
 class Server extends OvernightServer {
   private readonly port: number;
@@ -15,6 +16,7 @@ class Server extends OvernightServer {
     this.app.use(cors());
     this.app.use(express.json());
     super.addControllers(controllers);
+    this.app.use(errorHandler);
   }
 
   public start() {

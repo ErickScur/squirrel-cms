@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import { CreateProductUseCase } from './CreateProductUseCase';
 
 class CreateProductController {
-  async handle(req: Request, res: Response): Promise<Response> {
+  async handle(req: Request, res: Response, next: NextFunction): Promise<Response> {
     const createProductUseCase = container.resolve(CreateProductUseCase);
     const { name, description, mainImage, price, stock, categoryId, brandId } = req.body;
     try {
@@ -18,7 +18,7 @@ class CreateProductController {
       });
       return res.status(201).send();
     } catch (error) {
-      return res.status(error.statusCode || 500).json({ message: error.message });
+      next(error);
     }
   }
 }

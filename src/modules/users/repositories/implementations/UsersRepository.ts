@@ -6,8 +6,12 @@ class UsersRepository implements IUsersRepository {
   findAll(): Promise<User[]> {
     throw new Error('Method not implemented.');
   }
-  findById(id: string): Promise<User> {
-    throw new Error('Method not implemented.');
+  async findById(id: string): Promise<User> {
+    try {
+      return await UserSchema.findById(id);
+    } catch (e) {
+      throw e;
+    }
   }
   async findByEmail(email: string): Promise<User> {
     try {

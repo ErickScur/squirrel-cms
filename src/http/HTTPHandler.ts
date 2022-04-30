@@ -9,47 +9,48 @@ enum HTTPStatus {
   INTERNAL_SERVER_ERROR = 500,
 }
 
-class GeneralError {
+class AppError {
   constructor(public message?: string, private originalError?: any) {}
 }
 
-class HTTPGeneralError extends GeneralError {
-  constructor(public message: string, public statusCode: number) {
+class HttpError extends AppError {
+  constructor(public message: string, public status: number) {
     super();
   }
 }
 
-class HTTPBadRequest extends HTTPGeneralError {
+class HTTPBadRequest extends HttpError {
   constructor(message: string) {
     super(message, HTTPStatus.BAD_REQUEST);
   }
 }
 
-class HTTPUnauthorized extends HTTPGeneralError {
+class HTTPUnauthorized extends HttpError {
   constructor(message: string) {
     super(message, HTTPStatus.UNAUTHORIZED);
   }
 }
 
-class HTTPForbidden extends HTTPGeneralError {
+class HTTPForbidden extends HttpError {
   constructor(message: string) {
     super(message, HTTPStatus.FORBIDDEN);
   }
 }
 
-class HTTPNotFound extends HTTPGeneralError {
+class HTTPNotFound extends HttpError {
   constructor(message: string) {
     super(message, HTTPStatus.NOT_FOUND);
   }
 }
 
-class HTTPInternalServer extends HTTPGeneralError {
+class HTTPInternalServer extends HttpError {
   constructor(message: string) {
     super(message, HTTPStatus.INTERNAL_SERVER_ERROR);
   }
 }
 
 export {
+  HttpError,
   HTTPBadRequest,
   HTTPUnauthorized,
   HTTPForbidden,

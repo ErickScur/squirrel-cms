@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Post, Put } from '@overnightjs/core';
+import { Controller, Delete, Get, Middleware, Post, Put } from '@overnightjs/core';
 import { CreateCategoryController } from '../useCases/createCategory/CreateCategoryController';
 import { Request, Response, NextFunction } from 'express';
 import { FindAllCategoriesController } from '../useCases/findAllCategories/FindAllCategoriesController';
@@ -6,6 +6,7 @@ import { FindCategoryByIdController } from '../useCases/findById/FindCategoryByI
 import { FindCategoryByNameController } from '../useCases/findByName/FindCategoryByNameController';
 import { UpdateCategoryController } from '../useCases/updateCategory/UpdateCategoryController';
 import { DeleteCategoryController } from '../useCases/deleteCategory/DeleteCategoryController';
+import { adminMiddleware } from '../../../middlewares/adminAuthenticated';
 
 @Controller('categories')
 class CategoriesController {
@@ -19,7 +20,7 @@ class CategoriesController {
   @Get()
   private async getAll(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._findAllCategoriesController.handle(req, res);
+      await this._findAllCategoriesController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
@@ -35,7 +36,7 @@ class CategoriesController {
   @Get(':id')
   private async getById(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._findCategoryByIdController.handle(req, res);
+      await this._findCategoryByIdController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
@@ -43,7 +44,7 @@ class CategoriesController {
   @Get('name/:name')
   private async getByName(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._findCategoryByNameController.handle(req, res);
+      await this._findCategoryByNameController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
@@ -51,15 +52,16 @@ class CategoriesController {
   @Put(':id')
   private async update(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._updateCategoryController.handle(req, res);
+      await this._updateCategoryController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
   }
+  @Middleware(adminMiddleware)
   @Delete(':id')
   private async delete(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._deleteCategoryController.handle(req, res);
+      await this._deleteCategoryController.handle(req, res, next);
     } catch (error) {
       next(error);
     }

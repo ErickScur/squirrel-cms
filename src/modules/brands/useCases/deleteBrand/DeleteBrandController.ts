@@ -12,7 +12,7 @@ class DeleteBrandController {
       await deleteBrandUseCase.execute(id);
       return res.status(200).send();
     } catch (error) {
-      return res.status(error.statusCode || 400).json({ message: error.message });
+      next(error);
     }
   }
 }

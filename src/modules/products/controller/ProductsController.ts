@@ -17,7 +17,7 @@ class ProductsController {
   @Post()
   private async create(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._createProductController.handle(req, res);
+      await this._createProductController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
@@ -25,7 +25,7 @@ class ProductsController {
   @Get()
   private async findAll(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._findAllProductsController.handle(req, res);
+      await this._findAllProductsController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
@@ -33,7 +33,7 @@ class ProductsController {
   @Get(':id')
   private async findById(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._findByIdController.handle(req, res);
+      await this._findByIdController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
@@ -42,7 +42,7 @@ class ProductsController {
   @Get('name/:name')
   private async findByName(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._findAllProductsController.handle(req, res);
+      await this._findAllProductsController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
@@ -50,7 +50,7 @@ class ProductsController {
   @Delete(':id')
   private async delete(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._deleteProductController.handle(req, res);
+      await this._deleteProductController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
@@ -58,7 +58,7 @@ class ProductsController {
   @Put(':id')
   private async update(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._updateProductController.handle(req, res);
+      await this._updateProductController.handle(req, res, next);
     } catch (error) {
       next(error);
     }

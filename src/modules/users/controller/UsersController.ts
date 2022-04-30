@@ -8,7 +8,7 @@ class UsersController {
   @Post()
   private async create(req: Request, res: Response, next: NextFunction) {
     try {
-      await this._createUserController.handle(req, res);
+      await this._createUserController.handle(req, res, next);
     } catch (error) {
       next(error);
     }
