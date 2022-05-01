@@ -5,7 +5,7 @@ const imageSchema = new Schema({
   path: { type: String },
   filename: { type: String },
 });
-const mongooseSchema = new Schema({
+export const mongooseProductSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: false },
   mainImage: { type: String, required: false },
@@ -17,4 +17,7 @@ const mongooseSchema = new Schema({
   images: [{ type: imageSchema }],
 });
 
-export const ProductSchema: Model<Product> = model<Product>('products', mongooseSchema);
+export const ProductSchema: Model<Product> = model<Product>(
+  'products',
+  mongooseProductSchema
+);

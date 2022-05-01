@@ -1,4 +1,4 @@
-import { User } from '../../model/User';
+import { Cart, User } from '../../model/User';
 import { UserSchema } from '../../schema/UserSchema';
 import { ICreateUserDTO, IUpdateUserDTO, IUsersRepository } from '../IUsersRepository';
 
@@ -30,6 +30,13 @@ class UsersRepository implements IUsersRepository {
   async create(data: ICreateUserDTO): Promise<User> {
     try {
       return await UserSchema.create(data);
+    } catch (e) {
+      throw e;
+    }
+  }
+  async updateCart(id: string, user: User): Promise<User> {
+    try {
+      return await UserSchema.findByIdAndUpdate(id, user);
     } catch (e) {
       throw e;
     }

@@ -1,4 +1,4 @@
-import { User } from '../model/User';
+import { Cart, User } from '../model/User';
 
 interface IUpdateUserDTO {
   name: string;
@@ -21,6 +21,7 @@ interface IUsersRepository {
   getCredentials(email: string): Promise<User>;
   create(data: ICreateUserDTO): Promise<User>;
   update(data: IUpdateUserDTO): Promise<User>;
+  updateCart(id: string, user: User): Promise<User>;
   delete(id: string): Promise<User>;
 }
 

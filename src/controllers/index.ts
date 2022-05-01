@@ -1,4 +1,5 @@
 import { BrandsController } from '../modules/brands/controller/BrandsController';
+import { CartController } from '../modules/cart/controller/CartController';
 import { CategoriesController } from '../modules/categories/controller/CategoriesController';
 import { ProductsController } from '../modules/products/controller/ProductsController';
 import { AuthController } from '../modules/users/controller/AuthController';
@@ -10,4 +11,5 @@ export const controllers = [
   new ProductsController(),
   new UsersController(),
   new AuthController(),
+  new CartController(),
 ];
