@@ -9,15 +9,7 @@ class CreateProductUseCase {
     @inject('ProductsRepository')
     private productsRepository: IProductsRepository
   ) {}
-  async execute({
-    name,
-    description,
-    mainImage,
-    price,
-    stock,
-    categoryId,
-    brandId,
-  }): Promise<void> {
+  async execute({ name, description, price, stock, categoryId, brandId }): Promise<void> {
     try {
       const productExists = await this.productsRepository.findByName(name);
       if (productExists)
@@ -27,7 +19,6 @@ class CreateProductUseCase {
       await this.productsRepository.create({
         name,
         description,
-        mainImage,
         price,
         stock,
         categoryId,

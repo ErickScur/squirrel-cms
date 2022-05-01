@@ -13,7 +13,6 @@ class UpdateProductUseCase {
   async execute({
     name,
     description,
-    mainImage,
     price,
     stock,
     categoryId,
@@ -35,7 +34,6 @@ class UpdateProductUseCase {
       const updatedProduct = await this.productsRepository.update({
         name,
         description,
-        mainImage,
         price,
         stock,
         categoryId,

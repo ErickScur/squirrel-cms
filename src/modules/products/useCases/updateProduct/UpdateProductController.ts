@@ -6,12 +6,11 @@ class UpdateProductController {
   async handle(req: Request, res: Response, next: NextFunction): Promise<Response> {
     const updateProductUseCase = container.resolve(UpdateProductUseCase);
     const { id } = req.params;
-    const { name, description, mainImage, price, stock, categoryId, brandId } = req.body;
+    const { name, description, price, stock, categoryId, brandId } = req.body;
     try {
       const product = await updateProductUseCase.execute({
         name,
         description,
-        mainImage,
         price,
         stock,
         categoryId,

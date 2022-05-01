@@ -29,7 +29,6 @@ interface IProductsRepository {
   create({
     name,
     description,
-    mainImage,
     price,
     stock,
     categoryId,
@@ -39,7 +38,6 @@ interface IProductsRepository {
   update({
     name,
     description,
-    mainImage,
     price,
     stock,
     categoryId,
@@ -47,6 +45,7 @@ interface IProductsRepository {
     id,
   }: IUpdateProductDTO): Promise<Product>;
   delete(id: string): Promise<Product>;
+  updateImages(id: string, product: Product): Promise<Product>;
 }
 
 export { IProductsRepository, IUpdateProductDTO, ICreateProductDTO };

@@ -31,7 +31,6 @@ class ProductsRepository implements IProductsRepository {
   async create({
     name,
     description,
-    mainImage,
     price,
     stock,
     categoryId,
@@ -42,7 +41,6 @@ class ProductsRepository implements IProductsRepository {
       return await ProductSchema.create({
         name,
         description,
-        mainImage,
         price,
         stock,
         categoryId,
@@ -56,7 +54,6 @@ class ProductsRepository implements IProductsRepository {
   async update({
     name,
     description,
-    mainImage,
     price,
     stock,
     categoryId,
@@ -68,7 +65,6 @@ class ProductsRepository implements IProductsRepository {
       return await ProductSchema.findByIdAndUpdate(id, {
         name,
         description,
-        mainImage,
         price,
         stock,
         categoryId,
@@ -82,6 +78,13 @@ class ProductsRepository implements IProductsRepository {
   async delete(id: string): Promise<Product> {
     try {
       return await ProductSchema.findByIdAndDelete(id);
+    } catch (error) {
+      throw error;
+    }
+  }
+  async updateImages(id: string, product: Product): Promise<Product> {
+    try {
+      return await ProductSchema.findByIdAndUpdate(id, product);
     } catch (error) {
       throw error;
     }
