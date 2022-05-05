@@ -41,8 +41,13 @@ class UsersRepository implements IUsersRepository {
       throw e;
     }
   }
-  update(data: IUpdateUserDTO): Promise<User> {
-    throw new Error('Method not implemented.');
+  async update(data: IUpdateUserDTO): Promise<User> {
+    const { id, email, cpf, name } = data;
+    try {
+      return await UserSchema.findByIdAndUpdate(id, { email, cpf, name });
+    } catch (e) {
+      throw e;
+    }
   }
   delete(id: string): Promise<User> {
     throw new Error('Method not implemented.');
