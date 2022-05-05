@@ -25,6 +25,7 @@ class CategoriesController {
       next(error);
     }
   }
+  @Middleware(adminMiddleware)
   @Post()
   private async create(req: Request, res: Response, next: NextFunction) {
     try {
@@ -49,6 +50,7 @@ class CategoriesController {
       next(error);
     }
   }
+  @Middleware(adminMiddleware)
   @Put(':id')
   private async update(req: Request, res: Response, next: NextFunction) {
     try {

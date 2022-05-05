@@ -1,8 +1,9 @@
 // --- OvernightJS
-import { Controller, Delete, Get, Post, Put } from '@overnightjs/core';
+import { Controller, Delete, Get, Middleware, Post, Put } from '@overnightjs/core';
 
 // --- Express Types
 import { Request, Response, NextFunction } from 'express';
+import { adminMiddleware } from '../../../middlewares/adminAuthenticated';
 
 // --- Controllers ---
 import { CreateBrandController } from '../useCases/createBrand/CreateBrandController';
@@ -29,6 +30,7 @@ class BrandsController {
       next(error);
     }
   }
+  @Middleware(adminMiddleware)
   @Post()
   private async create(req: Request, res: Response, next: NextFunction) {
     try {
@@ -45,6 +47,7 @@ class BrandsController {
       next(error);
     }
   }
+  @Middleware(adminMiddleware)
   @Put(':id')
   private async update(req: Request, res: Response, next: NextFunction) {
     try {
@@ -53,6 +56,7 @@ class BrandsController {
       next(error);
     }
   }
+  @Middleware(adminMiddleware)
   @Delete(':id')
   private async delete(req: Request, res: Response, next: NextFunction) {
     try {

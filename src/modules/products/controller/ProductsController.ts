@@ -8,6 +8,7 @@ import { DeleteProductController } from '../useCases/deleteProduct/DeleteProduct
 import { storage } from '../../../configs/MulterStorage';
 import multer from 'multer';
 import { UploadImageController } from '../useCases/uploadImage/UploadImageController';
+import { adminMiddleware } from '../../../middlewares/adminAuthenticated';
 
 const upload = multer(storage.upload('./tmp/products')).array('files', 10);
 
@@ -20,6 +21,7 @@ class ProductsController {
   private _deleteProductController = new DeleteProductController();
   private _uploadImageCOntroller = new UploadImageController();
 
+  @Middleware(adminMiddleware)
   @Post()
   private async create(req: Request, res: Response, next: NextFunction) {
     try {
@@ -53,6 +55,7 @@ class ProductsController {
       next(error);
     }
   }
+  @Middleware(adminMiddleware)
   @Delete(':id')
   private async delete(req: Request, res: Response, next: NextFunction) {
     try {
@@ -61,6 +64,7 @@ class ProductsController {
       next(error);
     }
   }
+  @Middleware(adminMiddleware)
   @Put(':id')
   private async update(req: Request, res: Response, next: NextFunction) {
     try {
@@ -70,7 +74,7 @@ class ProductsController {
     }
   }
   @Post(':id/images')
-  @Middleware(upload)
+  @Middleware([upload, adminMiddleware])
   private async addImages(req: Request, res: Response, next: NextFunction) {
     try {
       await this._uploadImageCOntroller.handle(req, res, next);
