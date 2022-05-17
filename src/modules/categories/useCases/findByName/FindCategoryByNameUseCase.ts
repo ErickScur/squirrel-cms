@@ -1,7 +1,7 @@
+import { HTTPNotFound } from '@http/HTTPHandler';
+import { Category } from '@modules/categories/model/Category';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { inject, injectable } from 'tsyringe';
-import { HTTPNotFound } from '../../../../http/HTTPHandler';
-import { Category } from '../../model/Category';
-import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
 
 @injectable()
 class FindCategoryByNameUseCase {

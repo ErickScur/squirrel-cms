@@ -1,7 +1,7 @@
+import { HTTPNotFound } from '@http/HTTPHandler';
+import { Brand } from '@modules/brands/model/Brand';
+import { IBrandsRepository } from '@modules/brands/repositories/IBrandsRepository';
 import { inject, injectable } from 'tsyringe';
-import { HTTPNotFound } from '../../../../http/HTTPHandler';
-import { Brand } from '../../model/Brand';
-import { IBrandsRepository } from '../../repositories/IBrandsRepository';
 
 @injectable()
 class FindBrandByNameUseCase {

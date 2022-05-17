@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
-import { HTTPForbidden } from '../../../../http/HTTPHandler';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
 import { compare } from 'bcrypt';
 import { sign } from 'jsonwebtoken';
-import { Environment } from '../../../../environment';
+import { Environment } from '@environment/index';
+import { HTTPForbidden } from '@http/HTTPHandler';
+import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 
 @injectable()
 class AuthenticateUserUseCase {

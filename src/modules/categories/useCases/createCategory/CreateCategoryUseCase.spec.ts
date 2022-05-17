@@ -1,5 +1,5 @@
-import { HTTPBadRequest } from '../../../../http/HTTPHandler';
-import { CategoriesRepositoryInMemory } from '../../repositories/in-memory/CategoriesRepositoryInMemory';
+import { HTTPBadRequest } from '@http/HTTPHandler';
+import { CategoriesRepositoryInMemory } from '@modules/categories/repositories/in-memory/CategoriesRepositoryInMemory';
 import { CreateCategoryUseCase } from './CreateCategoryUseCase';
 
 let createCategory: CreateCategoryUseCase;

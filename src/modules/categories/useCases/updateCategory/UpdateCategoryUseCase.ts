@@ -1,15 +1,10 @@
-import { inject, injectable } from 'tsyringe';
-import {
-  HTTPBadRequest,
-  HTTPForbidden,
-  HTTPInternalServer,
-  HTTPNotFound,
-} from '../../../../http/HTTPHandler';
-import { Category } from '../../model/Category';
+import { HTTPNotFound, HTTPBadRequest } from '@http/HTTPHandler';
+import { Category } from '@modules/categories/model/Category';
 import {
   ICategoriesRepository,
   IUpdateCategoryDTO,
-} from '../../repositories/ICategoriesRepository';
+} from '@modules/categories/repositories/ICategoriesRepository';
+import { inject, injectable } from 'tsyringe';
 
 @injectable()
 class UpdateCategoryUseCase {

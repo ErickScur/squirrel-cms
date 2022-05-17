@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
-import { HTTPBadRequest } from '../../../../http/HTTPHandler';
-import { IProductsRepository } from '../../repositories/IProductsRepository';
 import slugify from 'slugify';
+import { HTTPBadRequest } from '@http/HTTPHandler';
+import { IProductsRepository } from '@modules/products/repositories/IProductsRepository';
 
 @injectable()
 class CreateProductUseCase {

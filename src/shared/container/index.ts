@@ -1,12 +1,12 @@
+import { IBrandsRepository } from '@modules/brands/repositories/IBrandsRepository';
+import { BrandsRepository } from '@modules/brands/repositories/implementations/BrandRepository';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
+import { CategoriesRepository } from '@modules/categories/repositories/implementations/CategoriesRepository';
+import { ProductsRepository } from '@modules/products/repositories/implementations/ProductsRepository';
+import { IProductsRepository } from '@modules/products/repositories/IProductsRepository';
+import { UsersRepository } from '@modules/users/repositories/implementations/UsersRepository';
+import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 import { container } from 'tsyringe';
-import { ICategoriesRepository } from '../../modules/categories/repositories/ICategoriesRepository';
-import { CategoriesRepository } from '../../modules/categories/repositories/implementations/CategoriesRepository';
-import { BrandsRepository } from '../../modules/brands/repositories/implementations/BrandRepository';
-import { IBrandsRepository } from '../../modules/brands/repositories/IBrandsRepository';
-import { IProductsRepository } from '../../modules/products/repositories/IProductsRepository';
-import { ProductsRepository } from '../../modules/products/repositories/implementations/ProductsRepository';
-import { IUsersRepository } from '../../modules/users/repositories/IUsersRepository';
-import { UsersRepository } from '../../modules/users/repositories/implementations/UsersRepository';
 
 container.registerSingleton<ICategoriesRepository>(
   'CategoriesRepository',

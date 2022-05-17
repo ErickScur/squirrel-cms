@@ -1,14 +1,14 @@
+import { storage } from '@configs/MulterStorage';
+import { adminMiddleware } from '@middlewares/adminAuthenticated';
 import { Controller, Delete, Get, Middleware, Post, Put } from '@overnightjs/core';
-import { CreateProductController } from '../useCases/createProduct/CreateProductController';
 import { Request, Response, NextFunction } from 'express';
+import multer from 'multer';
+import { CreateProductController } from '../useCases/createProduct/CreateProductController';
+import { DeleteProductController } from '../useCases/deleteProduct/DeleteProductController';
 import { FindAllProductsController } from '../useCases/findAll/FindAllProductsController';
 import { FindByIdController } from '../useCases/findById/FindByIdController';
 import { UpdateProductController } from '../useCases/updateProduct/UpdateProductController';
-import { DeleteProductController } from '../useCases/deleteProduct/DeleteProductController';
-import { storage } from '../../../configs/MulterStorage';
-import multer from 'multer';
 import { UploadImageController } from '../useCases/uploadImage/UploadImageController';
-import { adminMiddleware } from '../../../middlewares/adminAuthenticated';
 
 const upload = multer(storage.upload('./tmp/products')).array('files', 10);
 

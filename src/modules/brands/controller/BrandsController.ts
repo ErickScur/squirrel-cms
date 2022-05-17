@@ -3,7 +3,7 @@ import { Controller, Delete, Get, Middleware, Post, Put } from '@overnightjs/cor
 
 // --- Express Types
 import { Request, Response, NextFunction } from 'express';
-import { adminMiddleware } from '../../../middlewares/adminAuthenticated';
+import { adminMiddleware } from '@middlewares/adminAuthenticated';
 
 // --- Controllers ---
 import { CreateBrandController } from '../useCases/createBrand/CreateBrandController';

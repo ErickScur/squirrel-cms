@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { CreateBrandUseCase } from './CreateBrandUseCase';
 import { container } from 'tsyringe';
+import { CreateBrandUseCase } from './CreateBrandUseCase';
 
 class CreateBrandController {
   async handle(req: Request, res: Response, next: NextFunction): Promise<Response> {

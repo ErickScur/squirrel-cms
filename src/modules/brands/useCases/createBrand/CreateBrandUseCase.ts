@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
-import { HTTPBadRequest } from '../../../../http/HTTPHandler';
-import { IBrandsRepository } from '../../repositories/IBrandsRepository';
+import { HTTPBadRequest } from '@http/HTTPHandler';
+import { IBrandsRepository } from '@modules/brands/repositories/IBrandsRepository';
 
 @injectable()
 class CreateBrandUseCase {

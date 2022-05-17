@@ -1,9 +1,7 @@
-import { hash } from 'bcrypt';
+import { HTTPNotFound, HTTPInternalServer } from '@http/HTTPHandler';
+import { User } from '@modules/users/model/User';
+import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 import { inject, injectable } from 'tsyringe';
-import { Environment } from '../../../../environment';
-import { HTTPInternalServer, HTTPNotFound } from '../../../../http/HTTPHandler';
-import { User } from '../../model/User';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
 
 @injectable()
 class UpdateUserUseCase {

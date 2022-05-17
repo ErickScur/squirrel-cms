@@ -1,8 +1,8 @@
+import { HTTPNotFound, HTTPBadRequest } from '@http/HTTPHandler';
+import { Product } from '@modules/products/model/Product';
+import { IProductsRepository } from '@modules/products/repositories/IProductsRepository';
 import slugify from 'slugify';
 import { inject, injectable } from 'tsyringe';
-import { HTTPBadRequest, HTTPNotFound } from '../../../../http/HTTPHandler';
-import { Product } from '../../model/Product';
-import { IProductsRepository } from '../../repositories/IProductsRepository';
 
 @injectable()
 class UpdateProductUseCase {

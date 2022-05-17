@@ -1,6 +1,6 @@
-import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
+import { HTTPBadRequest } from '@http/HTTPHandler';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { inject, injectable } from 'tsyringe';
-import { HTTPBadRequest } from '../../../../http/HTTPHandler';
 
 @injectable()
 class CreateCategoryUseCase {

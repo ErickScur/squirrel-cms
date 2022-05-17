@@ -1,7 +1,7 @@
+import { HTTPNotFound } from '@http/HTTPHandler';
+import { Product } from '@modules/products/model/Product';
+import { IProductsRepository } from '@modules/products/repositories/IProductsRepository';
 import { inject, injectable } from 'tsyringe';
-import { HTTPNotFound } from '../../../../http/HTTPHandler';
-import { Product } from '../../model/Product';
-import { IProductsRepository } from '../../repositories/IProductsRepository';
 
 @injectable()
 class FindByIdUseCase {

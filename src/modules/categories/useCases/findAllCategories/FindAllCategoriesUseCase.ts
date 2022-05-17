@@ -1,5 +1,5 @@
-import { Category } from '../../model/Category';
-import { ICategoriesRepository } from '../../repositories/ICategoriesRepository';
+import { Category } from '@modules/categories/model/Category';
+import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()

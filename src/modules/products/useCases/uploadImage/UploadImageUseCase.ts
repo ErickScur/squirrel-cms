@@ -1,6 +1,6 @@
+import { HTTPNotFound, HTTPInternalServer } from '@http/HTTPHandler';
+import { IProductsRepository } from '@modules/products/repositories/IProductsRepository';
 import { inject, injectable } from 'tsyringe';
-import { HTTPInternalServer, HTTPNotFound } from '../../../../http/HTTPHandler';
-import { IProductsRepository } from '../../repositories/IProductsRepository';
 
 @injectable()
 class UploadImageUseCase {

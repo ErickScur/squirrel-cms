@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import { HTTPBadRequest, HTTPForbidden, HTTPNotFound } from '../http/HTTPHandler';
+import { HTTPBadRequest, HTTPForbidden, HTTPNotFound } from '@http/HTTPHandler';
 import { verify } from 'jsonwebtoken';
-import { Environment } from '../environment';
-import { UsersRepository } from '../modules/users/repositories/implementations/UsersRepository';
+import { Environment } from '@environment/index';
+import { UsersRepository } from '@modules/users/repositories/implementations/UsersRepository';
 
 interface IPayload {
   sub: string;

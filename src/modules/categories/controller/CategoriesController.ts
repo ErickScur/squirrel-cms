@@ -1,12 +1,12 @@
 import { Controller, Delete, Get, Middleware, Post, Put } from '@overnightjs/core';
 import { CreateCategoryController } from '../useCases/createCategory/CreateCategoryController';
 import { Request, Response, NextFunction } from 'express';
+import { adminMiddleware } from '@middlewares/adminAuthenticated';
+import { DeleteCategoryController } from '../useCases/deleteCategory/DeleteCategoryController';
 import { FindAllCategoriesController } from '../useCases/findAllCategories/FindAllCategoriesController';
 import { FindCategoryByIdController } from '../useCases/findById/FindCategoryByIdController';
 import { FindCategoryByNameController } from '../useCases/findByName/FindCategoryByNameController';
 import { UpdateCategoryController } from '../useCases/updateCategory/UpdateCategoryController';
-import { DeleteCategoryController } from '../useCases/deleteCategory/DeleteCategoryController';
-import { adminMiddleware } from '../../../middlewares/adminAuthenticated';
 
 @Controller('categories')
 class CategoriesController {

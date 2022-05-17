@@ -1,10 +1,10 @@
-import { Product } from '../../model/Product';
+import { Product } from '@modules/products/model/Product';
+import { ProductSchema } from '@modules/products/schema/ProductSchema';
 import {
-  ICreateProductDTO,
   IProductsRepository,
+  ICreateProductDTO,
   IUpdateProductDTO,
 } from '../IProductsRepository';
-import { ProductSchema } from '../../schema/ProductSchema';
 
 class ProductsRepository implements IProductsRepository {
   async findAll(): Promise<Product[]> {

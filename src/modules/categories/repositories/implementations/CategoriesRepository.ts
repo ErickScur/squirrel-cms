@@ -1,12 +1,10 @@
-import { Category } from '../../model/Category';
-
+import { Category } from '@modules/categories/model/Category';
+import { CategorySchema } from '@modules/categories/schema/CategorySchema';
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
   IUpdateCategoryDTO,
 } from '../ICategoriesRepository';
-
-import { CategorySchema } from '../../schema/CategorySchema';
 
 class CategoriesRepository implements ICategoriesRepository {
   async findAll(): Promise<Category[]> {

@@ -1,8 +1,8 @@
 import { inject, injectable } from 'tsyringe';
-import { HTTPForbidden, HTTPInternalServer } from '../../../../http/HTTPHandler';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
+import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 import { hash } from 'bcrypt';
-import { Environment } from '../../../../environment';
+import { Environment } from '@environment/index';
+import { HTTPForbidden, HTTPInternalServer } from '@http/HTTPHandler';
 
 @injectable()
 class CreateUserUseCase {

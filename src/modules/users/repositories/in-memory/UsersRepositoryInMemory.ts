@@ -1,5 +1,5 @@
-import { User } from '../../model/User';
-import { UserSchema } from '../../schema/UserSchema';
+import { User } from '@modules/users/model/User';
+import { UserSchema } from '@modules/users/schema/UserSchema';
 import { ICreateUserDTO, IUpdateUserDTO, IUsersRepository } from '../IUsersRepository';
 
 // This implementation of repository is only used for testing with JEST

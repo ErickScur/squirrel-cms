@@ -1,7 +1,7 @@
+import { HTTPNotFound, HTTPBadRequest } from '@http/HTTPHandler';
+import { IProductsRepository } from '@modules/products/repositories/IProductsRepository';
+import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 import { inject, injectable } from 'tsyringe';
-import { HTTPBadRequest, HTTPNotFound } from '../../../../http/HTTPHandler';
-import { IProductsRepository } from '../../../products/repositories/IProductsRepository';
-import { IUsersRepository } from '../../../users/repositories/IUsersRepository';
 
 @injectable()
 class AddProductUseCase {

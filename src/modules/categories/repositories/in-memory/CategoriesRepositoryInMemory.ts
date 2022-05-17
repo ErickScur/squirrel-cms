@@ -1,5 +1,5 @@
-import { Category } from '../../model/Category';
-import { CategorySchema } from '../../schema/CategorySchema';
+import { Category } from '@modules/categories/model/Category';
+import { CategorySchema } from '@modules/categories/schema/CategorySchema';
 import {
   ICategoriesRepository,
   ICreateCategoryDTO,
