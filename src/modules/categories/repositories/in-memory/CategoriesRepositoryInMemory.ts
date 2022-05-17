@@ -6,6 +6,8 @@ import {
   IUpdateCategoryDTO,
 } from '../ICategoriesRepository';
 
+// This implementation of repository is only used for testing with JEST
+
 class CategoriesRepositoryInMemory implements ICategoriesRepository {
   categories: Category[] = [];
 
