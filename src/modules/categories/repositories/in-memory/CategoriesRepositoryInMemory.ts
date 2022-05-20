@@ -32,10 +32,19 @@ class CategoriesRepositoryInMemory implements ICategoriesRepository {
     return category;
   }
   async update({ name, description, id }: IUpdateCategoryDTO): Promise<Category> {
-    throw new Error('Method not implemented.');
+    const index = this.categories.findIndex(c => c._id.toString() == id);
+    const category = this.categories[index];
+    Object.assign(category, {
+      name,
+      description,
+    });
+    return category;
   }
   async delete(id: string): Promise<Category> {
-    throw new Error('Method not implemented.');
+    const index = this.categories.findIndex(c => c._id.toString() == id);
+    const category = this.categories[index];
+    this.categories.splice(index, 1);
+    return category;
   }
 }
 
