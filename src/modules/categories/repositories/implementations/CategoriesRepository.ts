@@ -37,7 +37,11 @@ class CategoriesRepository implements ICategoriesRepository {
   }
   async update({ name, description, id }: IUpdateCategoryDTO): Promise<Category> {
     try {
-      return await CategorySchema.findByIdAndUpdate(id, { description, name });
+      return await CategorySchema.findByIdAndUpdate(
+        id,
+        { description, name },
+        { new: true }
+      );
     } catch (error) {
       throw error;
     }

@@ -36,14 +36,14 @@ class UsersRepository implements IUsersRepository {
   }
   async updateCart(id: string, user: User): Promise<User> {
     try {
-      return await UserSchema.findByIdAndUpdate(id, user);
+      return await UserSchema.findByIdAndUpdate(id, user, { new: true });
     } catch (e) {
       throw e;
     }
   }
   async update(id: string, data: IUpdateUserDTO): Promise<User> {
     try {
-      return await UserSchema.findByIdAndUpdate(id, data);
+      return await UserSchema.findByIdAndUpdate(id, data, { new: true });
     } catch (e) {
       throw e;
     }

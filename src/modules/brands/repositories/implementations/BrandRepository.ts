@@ -37,7 +37,11 @@ class BrandsRepository implements IBrandsRepository {
   }
   async update({ name, description, id }: IUpdateBrandDTO): Promise<Brand> {
     try {
-      return await BrandSchema.findByIdAndUpdate(id, { name, description });
+      return await BrandSchema.findByIdAndUpdate(
+        id,
+        { name, description },
+        { new: true }
+      );
     } catch (error) {
       throw error;
     }

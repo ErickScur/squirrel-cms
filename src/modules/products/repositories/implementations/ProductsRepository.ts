@@ -62,15 +62,19 @@ class ProductsRepository implements IProductsRepository {
     slug,
   }: IUpdateProductDTO): Promise<Product> {
     try {
-      return await ProductSchema.findByIdAndUpdate(id, {
-        name,
-        description,
-        price,
-        stock,
-        categoryId,
-        brandId,
-        slug,
-      });
+      return await ProductSchema.findByIdAndUpdate(
+        id,
+        {
+          name,
+          description,
+          price,
+          stock,
+          categoryId,
+          brandId,
+          slug,
+        },
+        { new: true }
+      );
     } catch (error) {
       throw error;
     }
@@ -84,7 +88,7 @@ class ProductsRepository implements IProductsRepository {
   }
   async updateImages(id: string, product: Product): Promise<Product> {
     try {
-      return await ProductSchema.findByIdAndUpdate(id, product);
+      return await ProductSchema.findByIdAndUpdate(id, product, { new: true });
     } catch (error) {
       throw error;
     }
