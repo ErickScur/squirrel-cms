@@ -16,6 +16,8 @@ interface Address extends Document {
   street_number: string;
   city_name: string;
   state_name: string;
+  country_name: string;
+  complement: string;
 }
 interface User extends Document {
   name: string;
