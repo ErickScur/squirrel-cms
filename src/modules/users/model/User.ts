@@ -24,7 +24,7 @@ interface User extends Document {
   password: string;
   admin: boolean;
   cart?: Cart;
-  adresses: Address[];
+  addresses: Address[];
 }
 
 export { User, Cart, Address };

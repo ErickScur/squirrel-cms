@@ -4,7 +4,7 @@ interface IUpdateUserDTO {
   name: string;
   cpf: string;
   email: string;
-  adresses?: Address[];
+  addresses?: Address[];
 }
 interface ICreateUserDTO {
   name: string;
