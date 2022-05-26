@@ -11,6 +11,16 @@ const cartSchema = new Schema({
   ],
 });
 
+const addressSchema = new Schema({
+  zip_code: { type: String, required: true },
+  street_name: { type: String, required: true },
+  street_number: { type: String, required: true },
+  city_name: { type: String, required: true },
+  state_name: { type: String, required: true },
+  country_name: { type: String, required: true },
+  complement: { type: String },
+});
+
 const mongooseSchema = new Schema({
   name: { type: String, required: true },
   cpf: { type: String, required: true },
@@ -18,6 +28,7 @@ const mongooseSchema = new Schema({
   admin: { type: Boolean },
   password: { type: String, required: true, select: false },
   cart: { type: cartSchema, default: {} },
+  addresses: [{ type: addressSchema }],
 });
 
 export const UserSchema: Model<User> = model<User>('users', mongooseSchema);
