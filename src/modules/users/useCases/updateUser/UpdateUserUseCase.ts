@@ -1,8 +1,10 @@
 import { HTTPNotFound, HTTPInternalServer } from '@http/HTTPHandler';
 import { User } from '@modules/users/model/User';
-import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
+import {
+  IUpdateUserDTO,
+  IUsersRepository,
+} from '@modules/users/repositories/IUsersRepository';
 import { inject, injectable } from 'tsyringe';
-import { IUpdateUserDTO } from '@modules/users/repositories/IUsersRepository';
 
 @injectable()
 class UpdateUserUseCase {

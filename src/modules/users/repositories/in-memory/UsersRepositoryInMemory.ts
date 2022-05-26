@@ -31,7 +31,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
     this.users.push(user);
     return user;
   }
-  async update(data: IUpdateUserDTO): Promise<User> {
+  async update(id: string, data: IUpdateUserDTO): Promise<User> {
     throw new Error('Method not implemented.');
   }
   async updateCart(id: string, user: User): Promise<User> {
