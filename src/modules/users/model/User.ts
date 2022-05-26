@@ -10,6 +10,13 @@ interface Cart {
     }
   ];
 }
+interface Address extends Document {
+  zip_code: string;
+  street_name: string;
+  street_number: string;
+  city_name: string;
+  state_name: string;
+}
 interface User extends Document {
   name: string;
   cpf: string;
@@ -17,6 +24,7 @@ interface User extends Document {
   password: string;
   admin: boolean;
   cart?: Cart;
+  adresses: Address[];
 }
 
-export { User, Cart };
+export { User, Cart, Address };

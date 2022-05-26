@@ -1,10 +1,10 @@
-import { Cart, User } from '../model/User';
+import { Address, User } from '../model/User';
 
 interface IUpdateUserDTO {
   name: string;
   cpf: string;
   email: string;
-  id: string;
+  adresses?: Address[];
 }
 interface ICreateUserDTO {
   name: string;
@@ -20,7 +20,7 @@ interface IUsersRepository {
   findByEmail(email: string): Promise<User>;
   getCredentials(email: string): Promise<User>;
   create(data: ICreateUserDTO): Promise<User>;
-  update(data: IUpdateUserDTO): Promise<User>;
+  update(id: string, data: IUpdateUserDTO): Promise<User>;
   updateCart(id: string, user: User): Promise<User>;
   delete(id: string): Promise<User>;
 }

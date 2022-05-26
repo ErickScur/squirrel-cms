@@ -41,10 +41,9 @@ class UsersRepository implements IUsersRepository {
       throw e;
     }
   }
-  async update(data: IUpdateUserDTO): Promise<User> {
-    const { id, email, cpf, name } = data;
+  async update(id: string, data: IUpdateUserDTO): Promise<User> {
     try {
-      return await UserSchema.findByIdAndUpdate(id, { email, cpf, name });
+      return await UserSchema.findByIdAndUpdate(id, data);
     } catch (e) {
       throw e;
     }
