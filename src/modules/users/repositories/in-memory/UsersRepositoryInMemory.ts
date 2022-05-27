@@ -34,7 +34,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
   async update(id: string, data: IUpdateUserDTO): Promise<User> {
     throw new Error('Method not implemented.');
   }
-  async updateCart(id: string, user: User): Promise<User> {
+  async updateAll(id: string, user: User): Promise<User> {
     throw new Error('Method not implemented.');
   }
   async delete(id: string): Promise<User> {

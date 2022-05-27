@@ -21,7 +21,7 @@ interface IUsersRepository {
   getCredentials(email: string): Promise<User>;
   create(data: ICreateUserDTO): Promise<User>;
   update(id: string, data: IUpdateUserDTO): Promise<User>;
-  updateCart(id: string, user: User): Promise<User>;
+  updateAll(id: string, user: User): Promise<User>;
   delete(id: string): Promise<User>;
 }
 

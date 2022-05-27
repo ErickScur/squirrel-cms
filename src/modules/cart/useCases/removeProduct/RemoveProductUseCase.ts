@@ -29,7 +29,7 @@ class RemoveProductUseCase {
       user.cart.total -= productCart.quantity * findProduct.price;
       user.cart.products.splice(index, 1);
 
-      const updatedUser = await this.usersRepository.updateCart(id, user);
+      const updatedUser = await this.usersRepository.updateAll(id, user);
       if (!updatedUser) throw new HTTPBadRequest('Could not update cart');
 
       return updatedUser;

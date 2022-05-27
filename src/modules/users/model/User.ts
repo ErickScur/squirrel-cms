@@ -10,7 +10,7 @@ interface Cart {
     }
   ];
 }
-interface Address extends Document {
+interface Address {
   zip_code: string;
   street_name: string;
   street_number: string;

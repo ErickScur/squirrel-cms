@@ -3,8 +3,12 @@ import { UserSchema } from '@modules/users/schema/UserSchema';
 import { ICreateUserDTO, IUpdateUserDTO, IUsersRepository } from '../IUsersRepository';
 
 class UsersRepository implements IUsersRepository {
-  findAll(): Promise<User[]> {
-    throw new Error('Method not implemented.');
+  async findAll(): Promise<User[]> {
+    try {
+      return await UserSchema.find();
+    } catch (e) {
+      throw e;
+    }
   }
   async findById(id: string): Promise<User> {
     try {
@@ -34,7 +38,7 @@ class UsersRepository implements IUsersRepository {
       throw e;
     }
   }
-  async updateCart(id: string, user: User): Promise<User> {
+  async updateAll(id: string, user: User): Promise<User> {
     try {
       return await UserSchema.findByIdAndUpdate(id, user, { new: true });
     } catch (e) {
@@ -48,8 +52,12 @@ class UsersRepository implements IUsersRepository {
       throw e;
     }
   }
-  delete(id: string): Promise<User> {
-    throw new Error('Method not implemented.');
+  async delete(id: string): Promise<User> {
+    try {
+      return await UserSchema.findByIdAndDelete(id);
+    } catch (e) {
+      throw e;
+    }
   }
 }
 
