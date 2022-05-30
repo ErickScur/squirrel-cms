@@ -44,6 +44,7 @@ interface IProductsRepository {
     brandId,
     id,
   }: IUpdateProductDTO): Promise<Product>;
+  updateStock(id: string, stock: number): Promise<Product>;
   delete(id: string): Promise<Product>;
   updateImages(id: string, product: Product): Promise<Product>;
 }
