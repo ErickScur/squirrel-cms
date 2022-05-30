@@ -10,6 +10,10 @@ interface Order extends Document {
     }
   ];
   total: number;
+  address_id: string;
+  payment_id: string;
+  payment_url: string;
+  payment_status: string;
 }
 
 export { Order };
