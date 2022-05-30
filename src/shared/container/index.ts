@@ -2,6 +2,8 @@ import { IBrandsRepository } from '@modules/brands/repositories/IBrandsRepositor
 import { BrandsRepository } from '@modules/brands/repositories/implementations/BrandRepository';
 import { ICategoriesRepository } from '@modules/categories/repositories/ICategoriesRepository';
 import { CategoriesRepository } from '@modules/categories/repositories/implementations/CategoriesRepository';
+import { OrdersRepository } from '@modules/orders/repositories/implementations/OrdersRepository';
+import { IOrdersRepository } from '@modules/orders/repositories/IOrdersRepository';
 import { ProductsRepository } from '@modules/products/repositories/implementations/ProductsRepository';
 import { IProductsRepository } from '@modules/products/repositories/IProductsRepository';
 import { UsersRepository } from '@modules/users/repositories/implementations/UsersRepository';
@@ -21,3 +23,5 @@ container.registerSingleton<IProductsRepository>(
 );
 
 container.registerSingleton<IUsersRepository>('UsersRepository', UsersRepository);
+
+container.registerSingleton<IOrdersRepository>('OrdersRepository', OrdersRepository);
