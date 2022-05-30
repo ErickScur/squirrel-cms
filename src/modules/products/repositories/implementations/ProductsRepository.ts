@@ -79,6 +79,17 @@ class ProductsRepository implements IProductsRepository {
       throw error;
     }
   }
+
+  async updateStock(id: string, stock: number): Promise<Product> {
+    try {
+      return await ProductSchema.findByIdAndUpdate(id, {
+        stock,
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async delete(id: string): Promise<Product> {
     try {
       return await ProductSchema.findByIdAndDelete(id);

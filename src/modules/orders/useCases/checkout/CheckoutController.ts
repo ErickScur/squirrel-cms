@@ -6,11 +6,12 @@ import { CheckoutUseCase } from './CheckoutUseCase';
 class CheckoutController {
   async handle(req: Request, res: Response, next: NextFunction): Promise<Response> {
     const checkoutUseCase = container.resolve(CheckoutUseCase);
+    const { address_id } = req.body;
     const user = req.body._user;
     try {
       if (!user) throw new HTTPBadRequest('No user in request body!');
 
-      const result = await checkoutUseCase.execute(user._id);
+      const result = await checkoutUseCase.execute(user._id, address_id);
       return res.status(200).send(result);
     } catch (error) {
       next(error);

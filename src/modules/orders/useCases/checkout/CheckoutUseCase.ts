@@ -1,48 +1,35 @@
-import { HTTPBadRequest, HTTPNotFound } from '@http/HTTPHandler';
+import {
+  HTTPBadRequest,
+  HTTPForbidden,
+  HTTPInternalServer,
+  HTTPNotFound,
+} from '@http/HTTPHandler';
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
-import { injectable, inject } from 'tsyringe';
-import mercadopago from 'mercadopago';
-import { Environment } from '@environment/index';
-import { v4 as uuid } from 'uuid';
+import { injectable, inject, container } from 'tsyringe';
+
 import { IProductsRepository } from '@modules/products/repositories/IProductsRepository';
-
-interface IItemsInterface {
-  id: string;
-  title: string;
-  description: string;
-  quantity: number;
-  currency_id: string;
-  unit_price: number;
-}
-
-interface IPaymentInterface {
-  items: IItemsInterface[];
-  payer: {
-    email: string;
-  };
-  external_reference: string;
-}
+import {
+  CreatePaymentUseCase,
+  IItemsInterface,
+} from '../createPayment/CreatePaymentUseCase';
+import { IOrdersRepository } from '@modules/orders/repositories/IOrdersRepository';
 
 @injectable()
 class CheckoutUseCase {
-  private access_token: string;
-
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
     @inject('ProductsRepository')
-    private productsRepository: IProductsRepository
-  ) {
-    this.access_token = Environment.getConfig('MERCADO_PAGO_TOKEN');
-  }
+    private productsRepository: IProductsRepository,
 
-  async execute(userId: string) {
+    @inject('OrdersRepository')
+    private ordersRepository: IOrdersRepository
+  ) {}
+
+  async execute(userId: string, address_id: string) {
     try {
-      mercadopago.configure({
-        sandbox: true,
-        access_token: this.access_token,
-      });
+      const createPaymentUseCase = container.resolve(CreatePaymentUseCase);
 
       const user = await this.usersRepository.findById(userId);
       if (!user) throw new HTTPNotFound('User was not found!');
@@ -50,34 +37,50 @@ class CheckoutUseCase {
       const cart = user.cart;
       if (cart.products.length <= 0) throw new HTTPBadRequest('Cart is empty!');
 
-      const id = uuid();
-
       let items: IItemsInterface[] = [];
+
+      const products = user.cart.products;
 
       for (let i = 0; i < cart.products.length; i++) {
         const p = cart.products[i];
+
         const product = await this.productsRepository.findById(p.product);
+        if (product.stock < p.quantity)
+          throw new HTTPForbidden(`Insufficient stock on item ${product.name}`);
+
+        await this.productsRepository.updateStock(
+          p.product,
+          (product.stock -= p.quantity)
+        );
+
         const info = {
           id: product._id.toString(),
           currency_id: 'BRL',
           quantity: p.quantity,
           description: product.description,
           unit_price: product.price,
-          title: 'Teste',
+          title: product.name,
         };
         items.push(info);
       }
 
-      const payload: IPaymentInterface = {
-        items,
-        payer: {
-          email: user.email,
-        },
-        external_reference: id,
-      };
-      //@ts-ignore
-      const payment = await mercadopago.preferences.create(payload);
-      return payment;
+      const payment = await createPaymentUseCase.execute(items, user.email);
+      if (!payment) throw new HTTPInternalServer('Error trying to generate payment!');
+
+      const order = await this.ordersRepository.create({
+        address_id,
+        payment_id: payment.body.external_reference,
+        payment_url: payment.body.init_point,
+        products,
+        total: cart.total,
+        user: userId,
+      });
+
+      user.cart.total = 0;
+      user.cart.products.splice(0, user.cart.products.length);
+      await this.usersRepository.updateAll(userId, user);
+
+      return order;
     } catch (e) {
       throw e;
     }
