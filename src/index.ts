@@ -7,7 +7,7 @@ import { DatabaseConnection } from './database';
 import './shared/container';
 
 (async () => {
-  console.log('API Starting...');
+  console.log('API Starting');
 
   const connectionString = Environment.getConfig('MONGODB_CONNECTION_STRING');
   if (!connectionString) throw new Error('MongoDB Connection String is not set!');
