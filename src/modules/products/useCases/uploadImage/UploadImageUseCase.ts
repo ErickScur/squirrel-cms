@@ -1,13 +1,18 @@
+import { Environment } from '@environment/index';
 import { HTTPNotFound, HTTPInternalServer } from '@http/HTTPHandler';
 import { IProductsRepository } from '@modules/products/repositories/IProductsRepository';
 import { inject, injectable } from 'tsyringe';
 
 @injectable()
 class UploadImageUseCase {
+  private baseUrl: string;
+
   constructor(
     @inject('ProductsRepository')
     private productsRepository: IProductsRepository
-  ) {}
+  ) {
+    this.baseUrl = Environment.getConfig('BASE_URL');
+  }
   async execute(files: any, id: string) {
     try {
       const product = await this.productsRepository.findById(id);
@@ -15,7 +20,7 @@ class UploadImageUseCase {
 
       files.forEach(f => {
         product.images.push({
-          path: f.path,
+          path: `${this.baseUrl}/static/products/${f.filename}`,
           filename: f.filename,
         });
       });

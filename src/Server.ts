@@ -15,6 +15,7 @@ class Server extends OvernightServer {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cors());
     this.app.use(express.json());
+    this.app.use('/static', express.static('tmp'));
     super.addControllers(controllers);
     this.app.use(errorHandler);
   }
