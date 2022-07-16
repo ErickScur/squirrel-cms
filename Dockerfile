@@ -10,4 +10,6 @@ COPY . .
 
 EXPOSE 3333
 
-CMD ["npm", "run", "dev"]
+RUN npm run build
+RUN cp .env ./dist
+CMD ["npm", "run", "start"]
